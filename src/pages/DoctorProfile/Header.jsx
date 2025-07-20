@@ -5,7 +5,7 @@ import NavBar from '../shared/NavBar/NavBar';
 const Header = () => {
   return (
     <div
-      className="relative w-full h-[900px] md:h-[650px]"
+      className="relative w-full h-[900px] md:h-[650px] bg-fixed"
       style={{
         backgroundImage: `url(${headerBg})`,
         backgroundSize: 'cover',
@@ -21,7 +21,7 @@ const Header = () => {
       <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-70 z-10" />
 
       {/* Content Section */}
-      <div className="relative z-30 flex items-center justify-center h-full px-6 pt-20">
+      <div className="relative z-30 flex items-center justify-center h-full px-6">
         {/* pt-20 is added to give space under the fixed navbar */}
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-10 w-full max-w-6xl text-white text-center md:text-left">

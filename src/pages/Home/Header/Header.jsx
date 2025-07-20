@@ -35,11 +35,12 @@ const Header = () => {
 
   return (
     <motion.div
-      className="relative h-[900px] md:h-[600px] top-0 left-0 right-0 z-50"
+      className="relative h-[900px] md:h-[600px] top-0 left-0 bg-fixed right-0 z-50"
       style={{
         backgroundImage: `url(${headerBg})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
+        backgroundAttachment:'fixed'
       }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
