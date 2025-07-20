@@ -76,7 +76,7 @@ const DoctorCard = () => {
 
     return (
         <motion.section 
-            className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
+            className=" px-4 lg:py-12 sm:px-2 lg:px-8 max-w-7xl mx-auto"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
