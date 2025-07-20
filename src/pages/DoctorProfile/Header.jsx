@@ -28,12 +28,12 @@ const Header = () => {
           
           {/* Text Content */}
           <div className="w-full md:w-1/2">
-            <h1 className="text-4xl md:text-5xl font-extrabold leading-snug bg-gradient-to-r from-blue-400 to-orange-200 bg-clip-text text-transparent animate-fade-in">
+            <h1 className="text-4xl md:text-5xl sm:mb-8 font-extrabold leading-snug bg-gradient-to-r from-blue-400 to-orange-200 bg-clip-text text-transparent animate-fade-in">
               Your Best Medical Help Center...
             </h1>
 
             <p className="mt-4 text-base md:text-lg text-white">
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has survived not only five centuries...
+              "Committed to providing compassionate, affordable, and quality healthcare services to ensure your well-being, safety, and complete peace of mind." 🏥💙
             </p>
 
             <button className="mt-6 font-bold px-6 py-3 text-yellow-900 bg-[#f7a582] rounded-xl text-lg hover:bg-[#f78a52] transition-all duration-300 shadow-md">
