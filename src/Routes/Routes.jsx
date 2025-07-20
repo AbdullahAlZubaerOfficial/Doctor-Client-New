@@ -34,6 +34,6 @@ export const router = createBrowserRouter(
     }
   ],
   {
-    basename: '/Doc-House-New' // Correct path for subdirectory
+    basename: '/' // Correct path for subdirectory
   }
 );

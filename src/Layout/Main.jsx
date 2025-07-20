@@ -4,6 +4,7 @@ import Footer from '../pages/shared/Footter/Footer';
 import NavBar from '../pages/shared/NavBar/NavBar';
 import ScrollToTop from '../Components/ScrollToTop';
 
+
 const Main = () => {
     return (
         <div className="bg-3d-medical min-h-screen">
