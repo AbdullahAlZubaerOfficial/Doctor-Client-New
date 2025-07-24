@@ -25,9 +25,7 @@ const NavBar = () => {
        <li className="font-bold">
         <Link to="/alldoctors" className={`${isScrolled ? 'text-white' : 'text-black'}`}>ALL Doctors</Link>
       </li>
-      <li className="font-bold">
-        <Link to="/appointment" className={`${isScrolled ? 'text-white' : 'text-black'}`}>Appointment</Link>
-      </li>
+    
 
       <li className="font-bold">
         <Link to="/adminDefaultLogin" className={`${isScrolled ? 'text-red-500' : 'text-green-700'}`}>Become Admin</Link>
@@ -36,6 +34,10 @@ const NavBar = () => {
       <li className="font-bold">
         <Link to="/dashboard/users" className={`${isScrolled ? 'text-white' : 'text-black'}`}>Dashboard</Link>
       </li>
+
+        <li className="font-bold">
+        <Link to="/appointment" className={`${isScrolled ? 'text-white' : 'text-black'}`}>Appointment</Link>
+      </li> 
     
     </>
   );

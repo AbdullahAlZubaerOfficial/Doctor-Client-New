@@ -116,7 +116,7 @@ const AdminDefaultLogin = () => {
             </Link>
 
           </span> */}
-         <SocialLogin></SocialLogin>
+         {/* <SocialLogin></SocialLogin> */}
         </div>
       </div>
     </div>
