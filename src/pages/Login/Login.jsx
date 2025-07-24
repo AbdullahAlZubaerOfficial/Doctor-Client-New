@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 import Swal from "sweetalert2";
@@ -7,6 +7,8 @@ import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 const Login = () => {
   const navigate = useNavigate();
   const { signIn } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const location = useLocation();
   const from = location.state?.form?.pathname || "/";
@@ -14,56 +16,64 @@ const Login = () => {
   const handleLogin = async (event) => {
     event.preventDefault();
     const form = event.target;
-    const inputValue = form.emailOrUsername.value;
-    const password = form.password.value;
+    const inputValue = form.emailOrUsername.value.trim();
+    const password = form.password.value.trim();
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    let emailToLogin = "";
+    if (!inputValue || !password) {
+      return Swal.fire({
+        icon: "error",
+        title: "Missing Fields",
+        text: "Please fill in all fields",
+      });
+    }
 
-    if (emailRegex.test(inputValue)) {
-      emailToLogin = inputValue;
-    } else {
-      try {
+    setLoading(true);
+
+    try {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      let emailToLogin = "";
+
+      if (emailRegex.test(inputValue)) {
+        emailToLogin = inputValue;
+      } else {
+        // Username case
         const res = await fetch(
           `https://doctor-server-green.vercel.app/users/username/${inputValue}`
         );
+        
+        if (!res.ok) {
+          throw new Error("Username not found");
+        }
+        
         const data = await res.json();
-
         if (!data.email) {
           throw new Error("Invalid username");
         }
         emailToLogin = data.email;
-      } catch (error) {
-        return Swal.fire({
-          icon: "error",
-          title: "Login Failed 😢",
-          text: "Invalid username or email",
-        });
       }
-    }
 
-    signIn(emailToLogin, password)
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
-        navigate(from, { replace: true });
-
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Login Successfully ✅",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-        Swal.fire({
-          icon: "error",
-          title: "Login Failed 😢",
-          text: error.message,
-        });
+      await signIn(emailToLogin, password);
+      
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Login Successful ✅",
+        showConfirmButton: false,
+        timer: 1500,
       });
+      
+      navigate(from, { replace: true });
+      
+    } catch (error) {
+      console.error("Login error:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Login Failed",
+        text: error.message || "Invalid credentials. Please try again.",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -79,40 +89,74 @@ const Login = () => {
         </div>
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
           <form onSubmit={handleLogin} className="card-body">
-            <fieldset className="fieldset">
-              <label name="email" className="label">
-                Email or Username
-              </label>
-              <input
-                name="emailOrUsername"
-                className="input"
-                placeholder="Email"
-              />
-
-              <label className="label">Password</label>
-              <input
-                name="password"
-                type="password"
-                className="input"
-                placeholder="Password"
-              />
-
-              <div>
-                <a className="link link-hover">Forgot password?</a>
+            <fieldset className="space-y-4">
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Email or Username</span>
+                </label>
+                <input
+                  name="emailOrUsername"
+                  type="text"
+                  className="input input-bordered"
+                  placeholder="Email or username"
+                  required
+                />
               </div>
-              <button className="btn btn-neutral mt-4">Login</button>
+
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Password</span>
+                </label>
+                <div className="relative">
+                  <input
+                    name="password"
+                    type={showPassword ? "text" : "password"}
+                    className="input input-bordered w-full"
+                    placeholder="Password"
+                    required
+                  />
+                  <button
+                    type="button"
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? "🙈" : "👁️"}
+                  </button>
+                </div>
+                <label className="label">
+                  <a href="#" className="label-text-alt link link-hover">
+                    Forgot password?
+                  </a>
+                </label>
+              </div>
+
+              <div className="form-control mt-6">
+                <button 
+                  className="btn btn-primary"
+                  disabled={loading}
+                >
+                  {loading ? (
+                    <span className="loading loading-spinner"></span>
+                  ) : (
+                    "Login"
+                  )}
+                </button>
+              </div>
             </fieldset>
           </form>
 
-          <span className="text-center mb-6">
-            New Here!{" "}
-            <Link to="/signup">
-              {" "}
-              <span className="underline text-blue-500"> SignUp</span>{" "}
-            </Link>
-
-          </span>
-          <SocialLogin></SocialLogin>
+          <div className="text-center mb-6">
+            <p>
+              New Here?{" "}
+              <Link to="/signup" className="link link-primary">
+                SignUp
+              </Link>
+            </p>
+          </div>
+          
+          <div className="px-6 pb-6">
+            <SocialLogin />
+          </div>
         </div>
       </div>
     </div>

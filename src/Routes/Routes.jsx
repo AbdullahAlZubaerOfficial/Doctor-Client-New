@@ -18,6 +18,7 @@ import Details from "../pages/DoctorProfile/Details";
 import DoctorProfileCard from "../pages/DoctorProfile/DoctorProfileCard";
 
 import UpdateItem from "../pages/Dashboard/UpdateItem/UpdateItem";
+import AdminDefaultLogin from "../pages/Login/AdminDefaultLogin";
 
 export const router = createBrowserRouter(
   [
@@ -40,7 +41,11 @@ export const router = createBrowserRouter(
         {
           path: "/login",
           element: <Login></Login>,
-        },
+        }, 
+        {
+          path: "/adminDefaultLogin",
+          element: <AdminDefaultLogin></AdminDefaultLogin>,
+        }, 
         {
           path: "/signup",
           element: <SignUp></SignUp>,

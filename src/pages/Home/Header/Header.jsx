@@ -7,6 +7,7 @@ import doctor2 from '../../../assets/assets_frontend/doc2.png';
 import doctor3 from '../../../assets/assets_frontend/doc3.png';
 import doctor4 from '../../../assets/assets_frontend/doc4.png';
 import { AuthContext } from '../../../providers/AuthProviders';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   // Image animation variants
@@ -105,7 +106,8 @@ const Header = () => {
                      </motion.p>
 
 
-              <motion.button 
+ <Link to="/about">
+               <motion.button 
                 className="rounded-[10px] bg-[#f7a582] p-4 font-size-[20px] hover:bg-[#e69572] transform hover:scale-105 mt-6 transition-all"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -115,6 +117,8 @@ const Header = () => {
               >
                 All Services
               </motion.button>
+ 
+ </Link>
             </motion.div>
 
             {/* Right side images */}

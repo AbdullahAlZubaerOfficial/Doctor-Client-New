@@ -29,12 +29,12 @@ const Dashboard = () => {
     <>
       {isAdmin ? (
         <>
-          <li><Link to="/dashboard/adminHome" className="font-bold"><FaHome /> Admin Home</Link></li>
+          {/* <li><Link to="/dashboard/adminHome" className="font-bold"><FaHome /> Admin Home</Link></li> */}
           <li><Link to="/dashboard/addDoctors" className="font-bold"><FaUtensils /> Add Doctors</Link></li>
           <li><Link to="/dashboard/manageItems" className="font-bold"><FaList /> Manage Items</Link></li>
           <li><Link to="/dashboard/users" className="font-bold"><FaUsers /> All Users</Link></li>
-          <li><Link to="/dashboard/paymentHistory" className="font-bold"><FaAd /> My Payment History</Link></li>
-          <li><Link to="/dashboard/cart" className="font-bold"><FaShoppingCart /> My Cart ({cart.length})</Link></li>
+          {/* <li><Link to="/dashboard/paymentHistory" className="font-bold"><FaAd /> My Payment History</Link></li> */}
+          {/* <li><Link to="/dashboard/cart" className="font-bold"><FaShoppingCart /> My Cart ({cart.length})</Link></li> */}
         </>
       ) : (
         <>
@@ -44,8 +44,8 @@ const Dashboard = () => {
         </>
       )}
       <li><Link to="/" className="font-bold"><FaHome /> Home</Link></li>
-      <li><Link to="/order/salad" className="font-bold"><FaCalendar /> Menu</Link></li>
-      <li><Link to="/dashboard/contact" className="font-bold"><FaShoppingCart /> Contact</Link></li>
+      {/* <li><Link to="/order/salad" className="font-bold"><FaCalendar /> Menu</Link></li> */}
+      {/* <li><Link to="/dashboard/contact" className="font-bold"><FaShoppingCart /> Contact</Link></li> */}
     </>
   );
 
