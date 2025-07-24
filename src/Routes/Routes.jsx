@@ -16,7 +16,9 @@ import ManageItems from '../pages/Dashboard/ManageItems/ManageItems';
 
 import Details from '../pages/DoctorProfile/Details';
 import DoctorProfileCard from '../pages/DoctorProfile/DoctorProfileCard';
-import UpdateItem from '../pages/Dashboard/updateItem/updateItem';
+import UpdateItem from '../pages/Dashboard/updateItem/UpdateItem';
+
+
 
 export const router = createBrowserRouter(
   [
