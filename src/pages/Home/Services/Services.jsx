@@ -57,7 +57,7 @@ const Services = () => {
                     whileHover={{ y: -10 }}
                 >
                     <img
-                        src="https://media.gettyimages.com/id/476209306/photo/female-doctor.jpg?s=612x612&w=gi&k=20&c=IeTboD4lSCP2tUo3pRhFylArH4ZOngOUGprVQ-JS1Gc="
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdOwKoG6F9Wbuv7Kuh6b2hoRDIvsFjbYW1Ig&s"
                         className="w-full max-w-md lg:max-w-none rounded-lg shadow-2xl hover:shadow-xl transition-all"
                         alt="Doctor"
                     />
