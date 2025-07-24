@@ -15,6 +15,7 @@ const DoctorProfileCard = () => {
       .get(`https://doctor-server-green.vercel.app/menu/${id}`)
       .then((res) => {
         setDoctor(res.data);
+        console.log(res.data);
       })
       .catch((err) => {
         console.error(err);
