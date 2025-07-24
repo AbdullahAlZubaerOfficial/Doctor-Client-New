@@ -57,7 +57,7 @@ const Services = () => {
                     whileHover={{ y: -10 }}
                 >
                     <img
-                        src={serviceImage}
+                        src="https://media.gettyimages.com/id/476209306/photo/female-doctor.jpg?s=612x612&w=gi&k=20&c=IeTboD4lSCP2tUo3pRhFylArH4ZOngOUGprVQ-JS1Gc="
                         className="w-full max-w-md lg:max-w-none rounded-lg shadow-2xl hover:shadow-xl transition-all"
                         alt="Doctor"
                     />
@@ -114,7 +114,7 @@ const Services = () => {
                         whileHover={{ scale: 1.02 }}
                     >
                         <img 
-                            src={teeth} 
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgDqfzRoEXXY0_Y696vlWGir4PKDAbQVnwBQ&s"
                             className="w-full h-auto max-h-[250px] object-cover rounded-lg hover:scale-105 transition-transform" 
                             alt="Teeth" 
                         />
