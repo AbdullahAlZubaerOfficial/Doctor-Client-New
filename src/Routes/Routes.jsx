@@ -13,9 +13,10 @@ import AdminRoute from './AdminRoute';
 import AddDoctors from '../pages/Dashboard/AddDoctors/AddDoctors';
 import AllUsers from '../pages/Dashboard/AllUsers/AllUsers';
 import ManageItems from '../pages/Dashboard/ManageItems/ManageItems';
-import UpdateItem from '../pages/Dashboard/updateItem/updateItem';
+
 import Details from '../pages/DoctorProfile/Details';
 import DoctorProfileCard from '../pages/DoctorProfile/DoctorProfileCard';
+import UpdateItem from '../pages/Dashboard/updateItem/updateItem';
 
 export const router = createBrowserRouter(
   [
