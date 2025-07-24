@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../providers/AuthProviders';
 
 const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -21,11 +22,25 @@ const NavBar = () => {
       <li className="font-bold">
         <Link to="/about" className={`${isScrolled ? 'text-white' : 'text-black'}`}>About</Link>
       </li>
+       <li className="font-bold">
+        <Link to="/alldoctors" className={`${isScrolled ? 'text-white' : 'text-black'}`}>ALL Doctors</Link>
+      </li>
       <li className="font-bold">
         <Link to="/appointment" className={`${isScrolled ? 'text-white' : 'text-black'}`}>Appointment</Link>
       </li>
+     
+      <li className="font-bold">
+        <Link to="/dashboard/users" className={`${isScrolled ? 'text-white' : 'text-black'}`}>Dashboard</Link>
+      </li>
     </>
   );
+
+  const {user,logOut}  = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut()
+    .then(()=> {})
+    .catch((error)=> console.log(error));
+  };
 
   return (
     <div
@@ -71,7 +86,23 @@ const NavBar = () => {
       </div>
 
       <div className="navbar-end">
-        <Link to="/login" className="btn">Login</Link>
+        {user ? (
+         <button 
+  onClick={handleLogOut} 
+  className={`btn btn-outline ${isScrolled ? 'text-white border-white' : 'text-black border-black'}`}>
+  LogOut
+</button>
+
+        ) : (
+         <Link to="/login">
+  <button className={`btn btn-outline ${isScrolled ? 'text-white border-white' : 'text-black border-black'}`}>
+    Login
+  </button>
+</Link>
+
+        )
+      
+      }
       </div>
     </div>
   );

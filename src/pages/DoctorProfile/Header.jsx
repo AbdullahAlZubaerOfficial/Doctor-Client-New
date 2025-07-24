@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import headerBg from '../../../public/headerBg.jpg'; // Make sure this path works
 import NavBar from '../shared/NavBar/NavBar';
+import { useParams } from 'react-router-dom';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const Header = () => {
+
+  const {id} = useParams();
+  const axiosPublic = useAxiosPublic();
+  const [doctor, setDoctor] = useState(null);
+
+  useEffect(()=> {
+    axiosPublic.get(`/menu/${id}`).then((res) => {
+      setDoctor(res.data);
+    });
+  },[id, axiosPublic]);
+
   return (
     <div
       className="relative w-full h-[900px] md:h-[650px] bg-fixed"
@@ -41,7 +54,7 @@ const Header = () => {
             </button>
 
             <p className="mt-6 text-2xl font-semibold text-green-200 animate-fade-in-delay">
-              Doctor Profile
+             {doctor?.name} Profile.....
             </p>
           </div>
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { motion } from 'framer-motion';
 import headerBg from '../../../assets/headerBg.jpg';
 import NavBar from '../../shared/NavBar/NavBar';
@@ -6,6 +6,7 @@ import doctor1 from '../../../assets/assets_frontend/doc1.png';
 import doctor2 from '../../../assets/assets_frontend/doc2.png';
 import doctor3 from '../../../assets/assets_frontend/doc3.png';
 import doctor4 from '../../../assets/assets_frontend/doc4.png';
+import { AuthContext } from '../../../providers/AuthProviders';
 
 const Header = () => {
   // Image animation variants
@@ -32,6 +33,8 @@ const Header = () => {
       }
     }
   };
+
+  const {user}  = useContext(AuthContext);
 
   return (
     <motion.div
@@ -69,6 +72,25 @@ const Header = () => {
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.8 }}
             >
+
+  <motion.h1 
+                className="mb-5 text-2xl md:text-5xl font-bold bg-gradient-to-r from-red-300 to-green-300  bg-clip-text text-transparent"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5, duration: 1 }}
+              >
+            <div className='flex text-center items-center'>
+                <div>
+                 Hi, 
+              </div>
+              <div>
+                 {
+                  user ? ( <h2> { user.displayName} </h2> ) : ( <h2></h2> )
+                 }
+              </div>
+            </div>
+              </motion.h1>
+
               <motion.h1 
                 className="mb-5 text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-200 to-orange-400 bg-clip-text text-transparent"
                 initial={{ opacity: 0 }}
@@ -84,7 +106,7 @@ const Header = () => {
 
 
               <motion.button 
-                className="rounded-[10px] bg-[#f7a582] p-4 font-size-[20px] hover:bg-[#e69572] transform hover:scale-105 transition-all"
+                className="rounded-[10px] bg-[#f7a582] p-4 font-size-[20px] hover:bg-[#e69572] transform hover:scale-105 mt-6 transition-all"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 initial={{ opacity: 0 }}

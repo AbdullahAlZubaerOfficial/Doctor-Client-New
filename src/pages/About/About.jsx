@@ -1,7 +1,9 @@
-import Navbar from 'daisyui/components/navbar';
-import React from 'react';
+
+import React, { useEffect } from 'react';
 import NavBar from '../shared/NavBar/NavBar';
 import { motion } from 'framer-motion';
+import { Link, useParams } from 'react-router-dom';
+import useMenu from '../../hooks/useMenu';
 
 const About = () => {
 
@@ -28,6 +30,14 @@ const About = () => {
     }
   };
 
+  const [,,refetch] = useMenu();
+
+  useEffect(()=> {
+    refetch();
+  },[refetch]);
+
+
+  const {category} = useParams();
 
   return (
 
@@ -168,9 +178,12 @@ const About = () => {
           className="mt-24 text-center"
         >
           <h3 className="text-2xl font-bold text-gray-900 mb-6">Ready to experience compassionate healthcare?</h3>
-          <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-lg shadow-md transition duration-300 transform hover:scale-105">
-            Book an Appointment
-          </button>
+       <Link to="/alldoctors/cardiology">
+  <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-lg shadow-md transition duration-300 transform hover:scale-105">
+    Book an Appointment
+  </button>
+</Link>
+
         </motion.div>
       </div>
     </div>

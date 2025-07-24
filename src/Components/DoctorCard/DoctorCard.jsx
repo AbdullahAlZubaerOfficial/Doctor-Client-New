@@ -116,7 +116,7 @@ const DoctorCard = () => {
                             <img
                                 src={doctor.image}
                                 className={`w-full h-full object-cover rounded-t-xl ${doctor.bgClass}`}
-                                alt={doctor.name}
+                                alt=""
                             />
                             <motion.div 
                                 className="absolute top-4 right-4 bg-white px-3 py-1 rounded-full shadow-md flex items-center"
@@ -130,7 +130,7 @@ const DoctorCard = () => {
                         </motion.figure>
 
                         <div className="card-body p-6">
-                            <h2 className="card-title text-2xl mb-1">{doctor.name}</h2>
+                            <h2 className="card-title text-2xl mb-1">{doctor?.name}</h2>
                             <p className="text-gray-500 mb-4">{doctor.specialty}</p>
 
                             <div className="rating rating-sm mb-6">
@@ -162,12 +162,23 @@ const DoctorCard = () => {
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                             >
-                                <Link to="/doctorDetails">View Profile</Link>
+                                <Link to="/alldoctors">View Profile</Link>
                             </motion.button>
                         </div>
                     </motion.div>
                 ))}
             </motion.div>
+
+                    <div className='flex justify-center'>
+                        <motion.button 
+                                className="btn mt-6 py-4 px-8 border-2 border-[#f7a582] text-[#f7a582] hover:bg-[#f7a582] hover:text-white transition-colors items-center text-center"
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                            >
+                                <Link to="/alldoctors">View All Doctors</Link>
+                            </motion.button>
+                    </div>
+               
         </motion.section>
     );
 };

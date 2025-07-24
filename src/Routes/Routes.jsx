@@ -6,6 +6,16 @@ import DoctorDetails from '../pages/DoctorProfile/DoctorDetails';
 import About from '../pages/About/About';
 import Login from '../pages/Login/Login';
 import SignUp from '../pages/SignUp/SignUp';
+import AllDoctors from '../pages/AllDoctors/AllDoctors';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
+import Dashboard from '../Layout/Dashboard';
+import AdminRoute from './AdminRoute';
+import AddDoctors from '../pages/Dashboard/AddDoctors/AddDoctors';
+import AllUsers from '../pages/Dashboard/AllUsers/AllUsers';
+import ManageItems from '../pages/Dashboard/ManageItems/ManageItems';
+import UpdateItem from '../pages/Dashboard/updateItem/updateItem';
+import Details from '../pages/DoctorProfile/Details';
+import DoctorProfileCard from '../pages/DoctorProfile/DoctorProfileCard';
 
 export const router = createBrowserRouter(
   [
@@ -31,8 +41,73 @@ export const router = createBrowserRouter(
           element: <SignUp></SignUp>
         },{
           path:"/appointment",
-          element: <DoctorDetails></DoctorDetails>
+          element: <DoctorProfileCard></DoctorProfileCard>
+        },{
+  path: "alldoctors/:category?",
+  element: <AllDoctors />
+},
+        {
+          path:"/dashboardd",
+          element: <Dashboard></Dashboard>
+        },
+         {
+          path:"/doctor/:id",
+          element: <DoctorProfileCard></DoctorProfileCard>
         }
+      ]
+    },{
+      path:"dashboard",
+      element: (
+        <PrivateRoute>
+          <Dashboard></Dashboard>
+        </PrivateRoute>
+      ),
+      children: [
+        // normal users
+
+
+
+
+
+        // admin Users
+
+        {
+          path:"users",
+          element:(
+            <AdminRoute>
+              <AllUsers></AllUsers>
+            </AdminRoute>
+          )
+        },
+
+        {
+          path:"addDoctors",
+          element: (
+            <AdminRoute>
+              <AddDoctors></AddDoctors>
+            </AdminRoute>
+          )
+        },{
+          path:"manageItems",
+          element: (
+            <AdminRoute>
+              <ManageItems></ManageItems>
+            </AdminRoute>
+          )
+        },
+        {
+          path:"updateItem/:id",
+          element: (
+            <AdminRoute>
+              <UpdateItem></UpdateItem>
+            </AdminRoute>
+          ),
+          loader: ({params})=> fetch(`http://localhost:5100/menu/${params.id}`),
+        },
+
+       
+
+
       ]
     }
   ],

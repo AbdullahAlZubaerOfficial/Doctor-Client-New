@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+;
 
 const Details = () => {
   const [activeTab, setActiveTab] = useState('Overview');
@@ -36,6 +39,23 @@ const Details = () => {
     },
     tap: { scale: 0.98 }
   };
+
+
+
+  const {id} = useParams();
+  const axiosPublic = useAxiosPublic();
+  const [doctor,setDoctor] = useState(null);
+
+  useEffect(()=> {
+    axiosPublic.get(`/menu/${id}`).then((res)=>{
+      setDoctor(res.data);
+    })
+  },[id,axiosPublic]);
+
+// if(!doctor) return <p>Loading...</p>
+
+
+
 
   return (
     <div className="max-w-6xl mx-auto p-4 md:p-6">
@@ -87,6 +107,7 @@ const Details = () => {
                       className="text-gray-600"
                       variants={itemVariants}
                     >
+                      
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     </motion.p>
                   </motion.div>

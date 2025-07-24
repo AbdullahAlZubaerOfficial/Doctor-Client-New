@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import serviceImage from '../../../assets/doctor8.jpg';
 import teeth from '../../../assets/teeth.jpg';
+import { Link } from 'react-router-dom';
 
 const Services = () => {
     // Animation variants
@@ -127,6 +128,9 @@ const Services = () => {
                         Sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inven­tore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
                     </motion.p>        
 
+            <Link to="/about">
+            
+            
                     <motion.button 
                         variants={itemVariants}
                         className="rounded-[10px] text-[#f7a582] border border-[#f7a582] px-6 py-3 font-bold hover:bg-[#f7a582] hover:text-white transition-all duration-300"
@@ -139,6 +143,9 @@ const Services = () => {
                     >
                         More Details
                     </motion.button>
+            
+            </Link>
+
                 </motion.div>
             </div>
         </motion.div>

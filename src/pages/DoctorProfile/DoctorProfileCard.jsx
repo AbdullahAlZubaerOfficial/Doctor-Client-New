@@ -1,8 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import img1 from '../../../public/doc14.png';
+// import img1 from '../../../public/doc14.png';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import Details from './Details';
+import Header from './Header';
 
 const DoctorProfileCard = () => {
+
+  const {id} = useParams();
+  const [doctor,setDoctor] = useState(null);
+
+  useEffect(()=> {
+    axios.get(`http://localhost:5100/menu/${id}`)
+    .then(res => {
+      setDoctor(res.data);
+    })
+    .catch(err => {
+      console.error(err);
+    });
+  },[id])
+
+
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -62,12 +81,18 @@ const DoctorProfileCard = () => {
     }
   };
 
+
+
   return (
-    <motion.div
+    <div>
+      <div className='hidden lg:block'>
+          <Header></Header>
+      </div>
+      <motion.div
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      className="max-w-4xl mx-auto mt-10 mb-10 bg-white rounded-xl shadow-lg overflow-hidden flex flex-col lg:flex-row hover:shadow-xl transition-shadow duration-300"
+      className="max-w-4xl mx-auto mt-28 mb-10 bg-white rounded-xl shadow-lg overflow-hidden flex flex-col lg:flex-row hover:shadow-xl  transition-shadow duration-300"
     >
       {/* Left: Image Section */}
       <motion.div 
@@ -82,7 +107,7 @@ const DoctorProfileCard = () => {
           {/* Responsive image container with aspect ratio */}
           <div className="pb-[100%] relative rounded-full overflow-hidden shadow-md">
             <img 
-              src={img1}
+              src={doctor?.image}
               alt="Dr. Ruby Perrin"
               className="absolute h-full w-full object-cover"
               onError={(e) => {
@@ -125,13 +150,13 @@ const DoctorProfileCard = () => {
               className="text-xl md:text-2xl font-bold text-gray-900"
               whileHover={{ color: "#3b82f6" }}
             >
-              Dr. Ruby Perrin
+              {doctor?.name}
             </motion.h2>
             <motion.p 
               className="text-sm md:text-base text-gray-600 mt-1"
               whileHover={{ x: 5 }}
             >
-              MBBS, MD - General Medicine
+             {doctor?.category}
             </motion.p>
           </div>
           
@@ -188,7 +213,7 @@ const DoctorProfileCard = () => {
             📍
           </motion.span>
           <div>
-            <p>Dhanmondi, Dhaka, Bangladesh</p>
+            <p> {doctor?.locationn} </p>
             <motion.a 
               href="#"
               className="text-orange-500 hover:text-orange-600 font-medium mt-1 inline-block transition-colors"
@@ -278,7 +303,10 @@ const DoctorProfileCard = () => {
           Book Appointment
         </motion.button>
       </motion.div>
+    
     </motion.div>
+      <Details></Details>
+    </div>
   )
 }
 
