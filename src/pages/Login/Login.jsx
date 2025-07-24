@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 import Swal from "sweetalert2";
+import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -109,7 +110,9 @@ const Login = () => {
               {" "}
               <span className="underline text-blue-500"> SignUp</span>{" "}
             </Link>
+
           </span>
+          <SocialLogin></SocialLogin>
         </div>
       </div>
     </div>
