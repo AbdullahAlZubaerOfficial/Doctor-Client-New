@@ -16,8 +16,9 @@ import ManageItems from '../pages/Dashboard/ManageItems/ManageItems';
 
 import Details from '../pages/DoctorProfile/Details';
 import DoctorProfileCard from '../pages/DoctorProfile/DoctorProfileCard';
-import UpdateItem from '../pages/Dashboard/updateItem/updateItem';
 
+
+import UpdateItem from "../pages/Dashboard/UpdateItem/UpdateItem";
 
 
 
@@ -103,14 +104,13 @@ export const router = createBrowserRouter(
           path:"updateItem/:id",
           element: (
             <AdminRoute>
-                 <UpdateItem></UpdateItem>
+              <UpdateItem></UpdateItem>
             </AdminRoute>
           ),
           loader: ({params})=> fetch(`http://localhost:5100/menu/${params.id}`),
         },
 
        
-
 
       ]
     }
