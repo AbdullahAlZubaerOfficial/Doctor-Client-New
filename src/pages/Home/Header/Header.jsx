@@ -108,7 +108,7 @@ const Header = () => {
 
  <Link to="/about">
                <motion.button 
-                className="rounded-[10px] bg-[#f7a582] p-4 font-size-[20px] hover:bg-[#e69572] transform hover:scale-105 mt-6 transition-all"
+                className="rounded-[10px] bg-[#d38766] p-4 font-size-[20px] hover:bg-[#e69572] transform hover:scale-105 mt-6 transition-all"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 initial={{ opacity: 0 }}
