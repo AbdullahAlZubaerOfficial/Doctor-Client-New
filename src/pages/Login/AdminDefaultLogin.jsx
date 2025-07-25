@@ -56,6 +56,7 @@ const AdminDefaultLogin = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        navigate("/dashboard/users")
       })
       .catch((error) => {
         console.log(error);
