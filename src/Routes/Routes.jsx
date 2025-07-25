@@ -19,6 +19,9 @@ import DoctorProfileCard from "../pages/DoctorProfile/DoctorProfileCard";
 
 import UpdateItem from "../pages/Dashboard/UpdateItem/UpdateItem";
 import AdminDefaultLogin from "../pages/Login/AdminDefaultLogin";
+import BookAnAppointment from "../pages/BookAnAppointment/BookAnAppointment";
+import BookAppointmentHistory from "../pages/BookAppointmentHistory/BookAppointmentHistory";
+import PrivateDefaultLogin from "./PrivateRoute/PrivateDefaultLogin";
 
 export const router = createBrowserRouter(
   [
@@ -50,10 +53,7 @@ export const router = createBrowserRouter(
           path: "/signup",
           element: <SignUp></SignUp>,
         },
-        {
-          path: "/appointment",
-          element: <DoctorProfileCard></DoctorProfileCard>,
-        },
+       
         {
           path: "alldoctors/:category?",
           element: <AllDoctors />,
@@ -66,8 +66,26 @@ export const router = createBrowserRouter(
           path: "/doctor/:id",
           element: <DoctorProfileCard></DoctorProfileCard>,
         },
+        {
+          path:"/bookappointment/:id",
+          element: <BookAnAppointment></BookAnAppointment>
+        },
+           {
+
+    path:"appointment",
+          element:
+          <PrivateDefaultLogin><BookAppointmentHistory></BookAppointmentHistory></PrivateDefaultLogin>
+    },
+      
       ],
     },
+
+ 
+
+
+    
+
+
     {
       path: "dashboard",
       element: (
@@ -77,6 +95,7 @@ export const router = createBrowserRouter(
       ),
       children: [
         // normal users
+
 
         // admin Users
 

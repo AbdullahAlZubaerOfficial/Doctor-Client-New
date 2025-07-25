@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { LuMapPin } from 'react-icons/lu';
 import { MdOutlineWifiCalling3 } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 
 const Contact = () => {
   // Animation variants
@@ -41,6 +42,24 @@ const Contact = () => {
   };
 
   return (
+<div >
+  
+<div className="flex justify-center">
+ <Link to="/alldoctors">
+ 
+   <motion.button  
+    className="btn text-center items-center justify-center mb-12 py-4 px-8 border-2 border-[#f7a582] text-[#f7a582] hover:bg-[#f7a582] hover:text-white transition-colors" 
+    whileHover={{ scale: 1.05 }} 
+    whileTap={{ scale: 0.95 }} 
+    onClick={()=> navigate(`/doctor/${_id}`)} 
+  > 
+    View All Doctors 
+  </motion.button>  
+ 
+ </Link>
+</div>
+
+    
     <motion.div 
       className="hero text-white rounded-xl bg-[rgb(7,51,47)] px-4 py-10 overflow-hidden"
       initial="hidden"
@@ -173,6 +192,7 @@ const Contact = () => {
         </motion.div>
       </div>
     </motion.div>
+</div>
   );
 };
 

@@ -94,6 +94,8 @@ const Home = () => {
             </div>
           </motion.div>
 
+          
+
           <motion.div variants={sectionVariants}>
             <Contact />
           </motion.div>

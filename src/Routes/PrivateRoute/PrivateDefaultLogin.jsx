@@ -1,8 +1,10 @@
-import React from 'react'
-import useAuth from '../../hooks/useAuth'
-import { Navigate, useLocation } from 'react-router-dom';
 
-const PrivateRoute = ({children}) => {
+import React from 'react'
+
+import { Navigate, useLocation } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
+
+const PrivateDefaultLogin = ({children}) => {
 
     const {user, loading} = useAuth();
     const location = useLocation();
@@ -15,7 +17,7 @@ const PrivateRoute = ({children}) => {
         return children;
     }
 
-  return <Navigate to="/adminDefaultLogin" state={{from:location}} replace></Navigate>
+  return <Navigate to="/login" state={{from:location}} replace></Navigate>
 };
 
-export default PrivateRoute
+export default PrivateDefaultLogin
