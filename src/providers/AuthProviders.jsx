@@ -50,22 +50,25 @@ const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      if (currentUser) {
-        const userInfo = { email: currentUser.email };
-        axiosPublic.post('/jwt', userInfo)
-          .then(res => {
-            if (res.data.token) {
-              localStorage.setItem('access-token', res.data.token);
-              setLoading(false);
-            }
-          });
-      } else {
-        localStorage.removeItem('access-token');
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      try {
+        setUser(currentUser);
+        
+        if (currentUser) {
+          const userInfo = { email: currentUser.email };
+          const res = await axiosPublic.post('/jwt', userInfo);
+          
+          if (res.data.token) {
+            localStorage.setItem('access-token', res.data.token);
+          }
+        } else {
+          localStorage.removeItem('access-token');
+        }
+      } catch (error) {
+        console.error("Auth state error:", error);
+      } finally {
         setLoading(false);
       }
-      console.log('current user', currentUser);
     });
 
     return () => unsubscribe();
@@ -83,7 +86,7 @@ const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={authInfo}>
-      {children}
+      {!loading && children}
     </AuthContext.Provider>
   );
 };

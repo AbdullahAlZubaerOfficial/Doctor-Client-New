@@ -22,6 +22,9 @@ import AdminDefaultLogin from "../pages/Login/AdminDefaultLogin";
 import BookAnAppointment from "../pages/BookAnAppointment/BookAnAppointment";
 import BookAppointmentHistory from "../pages/BookAppointmentHistory/BookAppointmentHistory";
 import PrivateDefaultLogin from "./PrivateRoute/PrivateDefaultLogin";
+import MyProfile from "../pages/MyProfile/MyProfile";
+import UpdateMyProfile from "../pages/Profile/UpdateMyProfile/UpdateMyProfile";
+// import UpdateMyProfile from "../pages/Profile/UpdateMyProfile/UpdateMyProfile";
 
 export const router = createBrowserRouter(
   [
@@ -72,10 +75,22 @@ export const router = createBrowserRouter(
         },
            {
 
-    path:"appointment",
+    path:"/appointment",
           element:
           <PrivateDefaultLogin><BookAppointmentHistory></BookAppointmentHistory></PrivateDefaultLogin>
     },
+{
+    path: "/updateprofile/:username",
+    element: (
+    
+            <UpdateMyProfile />
+       
+    )
+},
+    {
+      path:"/myprofile",
+      element: <MyProfile></MyProfile>
+    }
       
       ],
     },

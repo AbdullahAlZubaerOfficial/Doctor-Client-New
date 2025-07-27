@@ -1,12 +1,13 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import NavBar from '../shared/NavBar/NavBar';
 import { motion } from 'framer-motion';
 import { Link, useParams } from 'react-router-dom';
 import useMenu from '../../hooks/useMenu';
+import CountUp from 'react-countup';
 
 const About = () => {
-
+  const [isInView, setIsInView] = useState(false);
       // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -35,6 +36,13 @@ const About = () => {
   useEffect(()=> {
     refetch();
   },[refetch]);
+
+ const stats = [
+  { num: 10000, text: "Patients Served" },
+  { num: 1000, text: "Expert Doctors" },
+  { num: 15, text: "Specialities" },
+  { num: 0, text: "Emergency Care" }
+];
 
 
   const {category} = useParams();
@@ -142,32 +150,49 @@ const About = () => {
         </motion.div>
 
         {/* Stats Section */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="mt-24 bg-blue-600 rounded-xl shadow-lg overflow-hidden text-white"
-        >
-          <div className="grid md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-blue-500">
-            <div className="p-8 text-center">
-              <div className="text-4xl font-bold mb-2">10K+</div>
-              <p className="text-blue-100">Patients Served</p>
-            </div>
-            <div className="p-8 text-center">
-              <div className="text-4xl font-bold mb-2">50+</div>
-              <p className="text-blue-100">Expert Doctors</p>
-            </div>
-            <div className="p-8 text-center">
-              <div className="text-4xl font-bold mb-2">15+</div>
-              <p className="text-blue-100">Specialities</p>
-            </div>
-            <div className="p-8 text-center">
-              <div className="text-4xl font-bold mb-2">24/7</div>
-              <p className="text-blue-100">Emergency Care</p>
-            </div>
-          </div>
-        </motion.div>
+
+ <motion.div 
+      initial={{ opacity: 0 }}
+      whileInView={{ 
+        opacity: 1,
+        onViewportEnter: () => setIsInView(true) // Trigger when in view
+      }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+      className="mt-24 bg-blue-600 rounded-xl shadow-lg overflow-hidden text-white"
+    >
+      <div className="grid md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-blue-500">
+        {stats.map((item, index) => (
+          <motion.div 
+            key={index} 
+            className="text-center p-6 lg:pt-10 lg:pb-10"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            <span className="text-3xl lg:text-4xl font-bold mb-3 block">
+              {index === 3 ? (
+                "24/7"
+              ) : (
+                <CountUp
+                  end={item.num}
+                  duration={4}
+                  decimals={item.num % 1 !== 0 ? 1 : 0}
+                  suffix="+"
+                  startOnMount={false}
+                  delay={0}
+                  redraw={false}
+                  enableScrollSpy
+                  scrollSpyOnce
+                />
+              )}
+            </span>
+            <p className="text-blue-100 text-lg lg:text-xl font-semibold">
+              {item.text}
+            </p>
+          </motion.div>
+        ))}
+      </div>
+    </motion.div>
 
         {/* Final CTA */}
         <motion.div 

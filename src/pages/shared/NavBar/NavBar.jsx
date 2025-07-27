@@ -1,9 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProviders';
+import useAuth from '../../../hooks/useAuth';
 
 const NavBar = () => {
+
+  const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
+
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,6 +18,13 @@ const NavBar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+
+  const {user: currentUser} = useAuth();
+
+  const username = currentUser?.displayName || currentUser?.email?.split('@')[0]
+ 
+
 
   const navOptions = (
     <>
@@ -38,6 +50,17 @@ const NavBar = () => {
         <li className="font-bold">
         <Link to="/appointment" className={`${isScrolled ? 'text-white' : 'text-black'}`}>Appointment</Link>
       </li> 
+
+
+   <li className="font-bold">
+        <Link to="/myprofile" className={`${isScrolled ? 'text-white' : 'text-black'}`}>My Profile</Link>
+      </li> 
+
+      
+        <li className="font-bold">
+        <Link to={`/updateprofile/${username}`} className={`${isScrolled ? 'text-white' : 'text-black'}`}> Update My Profile</Link>
+      </li> 
+     
     
     </>
   );
