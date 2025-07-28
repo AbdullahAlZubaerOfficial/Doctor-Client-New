@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FiUpload, FiEdit2, FiUser, FiCreditCard, FiCalendar, FiPhone, FiDroplet, FiUsers } from 'react-icons/fi';
+import { FiUpload, FiEdit2, FiUser, FiCreditCard, FiCalendar, FiPhone, FiDroplet, FiUsers, FiMail } from 'react-icons/fi';
 import { Link, useNavigate } from 'react-router-dom';
 // import useAxiosSecure from '../../hooks/useAxiosSecure';
 import useAuth from '../../hooks/useAuth';
@@ -15,6 +15,7 @@ const MyProfile = () => {
   const [profileData, setProfileData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
+
 
   // Fetch profile data
   useEffect(() => {
@@ -42,6 +43,11 @@ const MyProfile = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, [user, axiosSecure]);
 
+
+  
+
+
+ 
   const ProfileField = ({ label, name, value, icon, type = 'text' }) => {
     return (
       <div className="mb-4">
@@ -65,7 +71,7 @@ const MyProfile = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-gradient-to-br mt-28 from-blue-50 to-indigo-100 py-8 px-4 sm:px-6 lg:px-8"
+      className=" bg-gradient-to-br mt-28 py-8 px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-3xl mx-auto">
         <motion.div
@@ -86,6 +92,17 @@ const MyProfile = () => {
           animate={{ scale: 1 }}
           className="bg-white shadow-xl rounded-lg overflow-hidden"
         >
+            <div className="bg-gray-50 px-6 py-4 flex justify-end">
+<Link to={`/updateprofile/${user?.displayName?.replace(/\s+/g, "-").toLowerCase() || user?.email}`}>
+  <motion.button
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+    className="flex items-center bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md shadow"
+  >
+    <FiEdit2 className="mr-2" /> Edit Profile
+  </motion.button>
+</Link>
+          </div>
           {/* Profile Header with Image */}
           <div className="bg-indigo-600 p-6 text-white">
             <div className="flex flex-col items-center">
@@ -132,15 +149,17 @@ const MyProfile = () => {
                 <ProfileField  
                   label="Full Name" 
                   name="fullName" 
-                  value={profileData?.fullName} 
+                  readOnly
+                  value={profileData?.fullName || user?.displayName } 
                   icon={<FiUser />} 
                 />
-                <ProfileField  
-                  label="Username" 
-                  name="username" 
-                  value={profileData?.username} 
-                  icon={<FiUser />} 
-                />
+            <ProfileField
+  label="Username"
+  name="username"
+  value={profileData?.username || user?.userName} // Fallback to user.userName if profileData.username doesn't exist
+  icon={<FiUser />}
+/>
+
                 <ProfileField  
                   label="NID/Birth Certificate Number" 
                   name="nidNumber" 
@@ -172,12 +191,12 @@ const MyProfile = () => {
                 <FiPhone className="mr-2" /> Contact Information
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <ProfileField  
-                  label="Email" 
-                  name="email" 
-                  value={profileData?.email || user?.email} 
-                  icon={<FiUser />} 
-                />
+             <ProfileField
+  label="Email"
+  name="email"
+  value={profileData?.email || user?.email}
+  icon={<FiMail />} // Changed from FiUser to FiMail for better icon representation
+/>
                 <ProfileField  
                   label="Contact Number" 
                   name="contactNumber" 

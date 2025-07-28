@@ -244,22 +244,25 @@ const UpdateMyProfile = () => {
                     {/* Personal Information */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                         {/* Full Name */}
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text font-medium flex items-center">
-                                    <FiUser className="mr-2" /> Full Name*
-                                </span>
-                            </label>
-                            <input
-                                type="text"
-                                placeholder="Your full name"
-                                {...register('fullName', { required: 'Full name is required' })}
-                                className="input input-bordered w-full focus:ring-2 focus:ring-primary"
-                            />
-                            {errors.fullName && (
-                                <span className="text-red-500 text-sm mt-1">{errors.fullName.message}</span>
-                            )}
-                        </div>
+                     <div className="form-control"> 
+    <label className="label"> 
+        <span className="label-text font-medium flex items-center"> 
+            <FiUser className="mr-2" /> Full Name* 
+        </span> 
+    </label> 
+    <input 
+        type="text" 
+        placeholder="Your full name" 
+        readOnly
+        defaultValue={user?.displayName || ""} 
+        {...register('fullName', { required: 'Full name is required' })} 
+        className="input input-bordered w-full focus:ring-2 focus:ring-primary" 
+    /> 
+    {errors.fullName && ( 
+        <span className="text-red-500 text-sm mt-1">{errors.fullName.message}</span> 
+    )} 
+</div>
+
 
                         {/* Username */}
                         <div className="form-control">
@@ -289,8 +292,8 @@ const UpdateMyProfile = () => {
                             <input
                                 type="email"
                                 value={user?.email || ''}
-                                readOnly
-                                className="input input-bordered w-full bg-gray-100"
+                                
+                                className="input input-bordered w-full focus:ring-2 focus:ring-primary"
                             />
                         </div>
 

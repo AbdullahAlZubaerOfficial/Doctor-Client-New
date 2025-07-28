@@ -56,10 +56,10 @@ const NavBar = () => {
         <Link to="/myprofile" className={`${isScrolled ? 'text-white' : 'text-black'}`}>My Profile</Link>
       </li> 
 
-      
+{/*       
         <li className="font-bold">
         <Link to={`/updateprofile/${username}`} className={`${isScrolled ? 'text-white' : 'text-black'}`}> Update My Profile</Link>
-      </li> 
+      </li>  */}
      
     
     </>

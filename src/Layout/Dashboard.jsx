@@ -33,7 +33,7 @@ const Dashboard = () => {
           <li><Link to="/dashboard/addDoctors" className="font-bold"><FaUtensils /> Add Doctors</Link></li>
           <li><Link to="/dashboard/manageItems" className="font-bold"><FaList /> Manage Items</Link></li>
           <li><Link to="/dashboard/users" className="font-bold"><FaUsers /> All Users</Link></li>
-          <li><Link to="/appointment" className="font-bold"><FaUsers />  Appointment</Link></li>
+          {/* <li><Link to="/appointment" className="font-bold"><FaUsers />  Appointment</Link></li> */}
           {/* <li><Link to="/dashboard/paymentHistory" className="font-bold"><FaAd /> My Payment History</Link></li> */}
           {/* <li><Link to="/dashboard/cart" className="font-bold"><FaShoppingCart /> My Cart ({cart.length})</Link></li> */}
         </>
