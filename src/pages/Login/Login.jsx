@@ -38,7 +38,7 @@ const Login = () => {
       } else {
         // Username case
         const res = await fetch(
-          `http://localhost:5100/users/username/${inputValue}`
+          `https://doctor-server-green.vercel.app/users/username/${inputValue}`
         );
 
         if (!res.ok) {

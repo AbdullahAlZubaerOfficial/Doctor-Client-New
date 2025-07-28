@@ -25,7 +25,7 @@ const AdminDefaultLogin = () => {
     } else {
       try {
         const res = await fetch(
-          `http://localhost:5100/users/username/${inputValue}`
+          `https://doctor-server-green.vercel.app/users/username/${inputValue}`
         );
         const data = await res.json();
 

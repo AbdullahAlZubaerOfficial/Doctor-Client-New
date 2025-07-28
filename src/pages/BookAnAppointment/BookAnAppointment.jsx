@@ -26,7 +26,7 @@ const BookAnAppointment = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5100/menu/${id}`)
+      .get(`https://doctor-server-green.vercel.app/menu/${id}`)
       .then((res) => {
         setDoctor(res.data);
       })

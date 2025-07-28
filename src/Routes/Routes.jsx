@@ -83,7 +83,11 @@ export const router = createBrowserRouter(
         },
         {
           path: "/updateprofile/:username",
-          element: <PrivateDefaultLogin><UpdateMyProfile /></PrivateDefaultLogin> ,
+          element: (
+            <PrivateDefaultLogin>
+              <UpdateMyProfile />
+            </PrivateDefaultLogin>
+          ),
         },
         {
           path: "/myprofile",
@@ -137,7 +141,7 @@ export const router = createBrowserRouter(
             </AdminRoute>
           ),
           loader: ({ params }) =>
-            fetch(`http://localhost:5100/menu/${params.id}`),
+            fetch(`https://doctor-server-green.vercel.app/menu/${params.id}`),
         },
       ],
     },
