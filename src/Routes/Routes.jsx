@@ -47,16 +47,16 @@ export const router = createBrowserRouter(
         {
           path: "/login",
           element: <Login></Login>,
-        }, 
+        },
         {
           path: "/adminDefaultLogin",
           element: <AdminDefaultLogin></AdminDefaultLogin>,
-        }, 
+        },
         {
           path: "/signup",
           element: <SignUp></SignUp>,
         },
-       
+
         {
           path: "alldoctors/:category?",
           element: <AllDoctors />,
@@ -70,36 +70,27 @@ export const router = createBrowserRouter(
           element: <DoctorProfileCard></DoctorProfileCard>,
         },
         {
-          path:"/bookappointment/:id",
-          element: <BookAnAppointment></BookAnAppointment>
+          path: "/bookappointment/:id",
+          element: <BookAnAppointment></BookAnAppointment>,
         },
-           {
-
-    path:"/appointment",
-          element:
-          <PrivateDefaultLogin><BookAppointmentHistory></BookAppointmentHistory></PrivateDefaultLogin>
-    },
-{
-    path: "/updateprofile/:username",
-    element: (
-    
-            <UpdateMyProfile />
-       
-    )
-},
-    {
-      path:"/myprofile",
-      element: <MyProfile></MyProfile>
-    }
-      
+        {
+          path: "/appointment",
+          element: (
+            <PrivateDefaultLogin>
+              <BookAppointmentHistory></BookAppointmentHistory>
+            </PrivateDefaultLogin>
+          ),
+        },
+        {
+          path: "/updateprofile/:username",
+          element: <PrivateDefaultLogin><UpdateMyProfile /></PrivateDefaultLogin> ,
+        },
+        {
+          path: "/myprofile",
+          element: <MyProfile></MyProfile>,
+        },
       ],
     },
-
- 
-
-
-    
-
 
     {
       path: "dashboard",
@@ -110,7 +101,6 @@ export const router = createBrowserRouter(
       ),
       children: [
         // normal users
-
 
         // admin Users
 
@@ -147,7 +137,7 @@ export const router = createBrowserRouter(
             </AdminRoute>
           ),
           loader: ({ params }) =>
-            fetch(`https://doctor-server-green.vercel.app/menu/${params.id}`),
+            fetch(`http://localhost:5100/menu/${params.id}`),
         },
       ],
     },

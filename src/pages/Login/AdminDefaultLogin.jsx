@@ -1,12 +1,11 @@
-import React, { useContext } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../providers/AuthProviders';
-import Swal from 'sweetalert2';
-import SocialLogin from '../../Components/SocialLogin/SocialLogin';
+import React, { useContext } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProviders";
+import Swal from "sweetalert2";
+import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 
 const AdminDefaultLogin = () => {
-
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const { signIn } = useContext(AuthContext);
 
   const location = useLocation();
@@ -26,7 +25,7 @@ const AdminDefaultLogin = () => {
     } else {
       try {
         const res = await fetch(
-          `https://doctor-server-green.vercel.app/users/username/${inputValue}`
+          `http://localhost:5100/users/username/${inputValue}`
         );
         const data = await res.json();
 
@@ -56,7 +55,7 @@ const AdminDefaultLogin = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate("/dashboard/users")
+        navigate("/dashboard/users");
       })
       .catch((error) => {
         console.log(error);
@@ -68,12 +67,14 @@ const AdminDefaultLogin = () => {
       });
   };
 
-
   return (
-     <div className="hero bg-base-200 min-h-screen">
+    <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold"> <span className='text-green-500'> Admin </span> Login </h1>
+          <h1 className="text-5xl font-bold">
+            {" "}
+            <span className="text-green-500"> Admin </span> Login{" "}
+          </h1>
           <p className="py-6">
             Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
             excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
@@ -117,11 +118,11 @@ const AdminDefaultLogin = () => {
             </Link>
 
           </span> */}
-         {/* <SocialLogin></SocialLogin> */}
+          {/* <SocialLogin></SocialLogin> */}
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AdminDefaultLogin
+export default AdminDefaultLogin;

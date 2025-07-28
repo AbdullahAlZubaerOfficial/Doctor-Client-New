@@ -32,10 +32,14 @@ const AuthProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  const googleSignIn = () => {
-    setLoading(true);
-    return signInWithPopup(auth, googleProvider);
-  };
+ const googleSignIn = () => {
+  setLoading(true);
+  return signInWithPopup(auth, googleProvider).then(result => {
+    setUser(result.user); // manually set user so context updates instantly
+    return result;
+  });
+};
+
 
   const logOut = () => {
     setLoading(true);

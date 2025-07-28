@@ -38,13 +38,13 @@ const Login = () => {
       } else {
         // Username case
         const res = await fetch(
-          `https://doctor-server-green.vercel.app/users/username/${inputValue}`
+          `http://localhost:5100/users/username/${inputValue}`
         );
-        
+
         if (!res.ok) {
           throw new Error("Username not found");
         }
-        
+
         const data = await res.json();
         if (!data.email) {
           throw new Error("Invalid username");
@@ -53,7 +53,7 @@ const Login = () => {
       }
 
       await signIn(emailToLogin, password);
-      
+
       Swal.fire({
         position: "top-end",
         icon: "success",
@@ -61,9 +61,8 @@ const Login = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      
+
       navigate(from, { replace: true });
-      
     } catch (error) {
       console.error("Login error:", error);
       Swal.fire({
@@ -131,10 +130,7 @@ const Login = () => {
               </div>
 
               <div className="form-control mt-6">
-                <button 
-                  className="btn btn-primary"
-                  disabled={loading}
-                >
+                <button className="btn btn-primary" disabled={loading}>
                   {loading ? (
                     <span className="loading loading-spinner"></span>
                   ) : (
@@ -153,7 +149,7 @@ const Login = () => {
               </Link>
             </p>
           </div>
-          
+
           <div className="px-6 pb-6">
             <SocialLogin />
           </div>

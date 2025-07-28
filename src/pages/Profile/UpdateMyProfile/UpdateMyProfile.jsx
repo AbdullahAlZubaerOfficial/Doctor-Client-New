@@ -170,6 +170,7 @@ const UpdateMyProfile = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
+                navigate("/myprofile");
             } else {
                 throw new Error('Failed to save profile data');
             }

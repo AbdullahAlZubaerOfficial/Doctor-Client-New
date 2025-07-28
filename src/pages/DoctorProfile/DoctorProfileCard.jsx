@@ -6,18 +6,14 @@ import axios from "axios";
 import Details from "./Details";
 import Header from "./Header";
 
-
 const DoctorProfileCard = () => {
-
   const { id } = useParams();
   const [doctor, setDoctor] = useState(null);
   const navigate = useNavigate();
- 
-
 
   useEffect(() => {
     axios
-      .get(`https://doctor-server-green.vercel.app/menu/${id}`)
+      .get(`http://localhost:5100/menu/${id}`)
       .then((res) => {
         setDoctor(res.data);
         console.log(res.data);
@@ -306,7 +302,7 @@ const DoctorProfileCard = () => {
             variants={buttonVariants}
             whileHover="hover"
             whileTap="tap"
-            onClick={()=> navigate(`/bookappointment/${doctor._id}`)}
+            onClick={() => navigate(`/bookappointment/${doctor._id}`)}
             className="w-full sm:w-auto mt-6 md:mt-8 px-5 py-2.5 sm:px-6 sm:py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium rounded-lg shadow-md transition-colors"
           >
             Book Appointment
