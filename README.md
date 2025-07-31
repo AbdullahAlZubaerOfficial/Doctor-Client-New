@@ -1,6 +1,10 @@
 # 🩺 DocConnect – Your Gateway to Smarter Healthcare
 
-🔗 [Live Website](https://bistro-boss-f9cc6.web.app/)  
+## ✨ Live Demo
+🔗 [Live Website](https://doctor-client-new.vercel.app/)  
+
+🔗 [Client Repository](https://github.com/AbdullahAlZubaerOfficial/Doctor-Client-New)
+🔗 [Server Repository](https://github.com/AbdullahAlZubaerOfficial/doctor-server)
 
 **DocConnect** is a modern healthcare application designed to seamlessly connect patients with doctors. Whether you're at home or on the go, DocConnect ensures that quality healthcare is always within reach. 🌍💙
 
