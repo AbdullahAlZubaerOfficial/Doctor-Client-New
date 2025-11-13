@@ -48,7 +48,7 @@ const Contact = () => {
  <Link to="/alldoctors">
  
    <motion.button  
-    className="btn text-center items-center justify-center mb-12 py-4 px-8 border-2 border-[#f7a582] text-[#f7a582] hover:bg-[#f7a582] hover:text-white transition-colors" 
+    className="btn text-center items-center justify-center mb-12 mt-10 py-4 px-8 border-2 border-[#f7a582] text-[#f7a582] hover:bg-[#f7a582] hover:text-white transition-colors" 
     whileHover={{ scale: 1.05 }} 
     whileTap={{ scale: 0.95 }} 
     onClick={()=> navigate(`/doctor/${_id}`)} 

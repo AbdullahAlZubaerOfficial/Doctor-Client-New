@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import NavBar from '../shared/NavBar/NavBar';
 import { motion } from 'framer-motion';
@@ -8,7 +7,8 @@ import CountUp from 'react-countup';
 
 const About = () => {
   const [isInView, setIsInView] = useState(false);
-      // Animation variants
+  
+  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -33,187 +33,253 @@ const About = () => {
 
   const [,,refetch] = useMenu();
 
-  useEffect(()=> {
+  useEffect(() => {
     refetch();
-  },[refetch]);
+  }, [refetch]);
 
- const stats = [
-  { num: 10000, text: "Patients Served" },
-  { num: 1000, text: "Expert Doctors" },
-  { num: 15, text: "Specialities" },
-  { num: 0, text: "Emergency Care" }
-];
+  const stats = [
+    { num: 10000, text: "Patients Served", icon: "👥" },
+    { num: 1000, text: "Expert Doctors", icon: "👨‍⚕️" },
+    { num: 15, text: "Specialities", icon: "🎯" },
+    { num: 0, text: "Emergency Care", icon: "🚑" }
+  ];
 
-
-  const {category} = useParams();
+  const { category } = useParams();
 
   return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+      <NavBar />
 
-    <div>
-        <NavBar/>
-
-
- <div className="bg-gradient-to-b from-blue-50 mt-20 to-white py-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        {/* Hero Section */}
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
-        >
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
-            About <span className="text-blue-600">Lifeline</span>
-          </h2>
-          <div className="w-24 h-1 bg-blue-500 mx-auto mb-6"></div>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Bringing Affordable, World-Class Healthcare to Every Doorstep
-          </p>
-        </motion.div>
-
-        {/* Content with staggered animation */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="grid md:grid-cols-2 gap-12 items-center"
-        >
-          {/* Left Column - Image */}
-          <motion.div variants={itemVariants} className="hidden md:block">
-            <div className="relative rounded-xl overflow-hidden shadow-2xl h-96">
-              <div className="absolute inset-0 bg-blue-500 opacity-10"></div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <svg className="w-64 h-64 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
-                </svg>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Right Column - Text Content */}
-          <motion.div variants={containerVariants} className="space-y-6">
-            <motion.p variants={itemVariants} className="text-gray-700 leading-relaxed text-lg">
-              At <span className="font-semibold text-blue-600">Lifeline Health Care</span>, we believe healthcare should be accessible, affordable, and of the highest quality — no matter your background or income. That belief drives everything we do.
-            </motion.p>
-
-            <motion.p variants={itemVariants} className="text-gray-700 leading-relaxed text-lg">
-              From rural villages to bustling cities, our mission is to serve people of all walks of life by offering top-tier medical services at a fraction of the typical cost. We combine the power of technology, modern facilities, and the warmth of compassionate professionals to bring hope, healing, and health to every patient.
-            </motion.p>
-
-            <motion.div variants={itemVariants} className="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-500">
-              <p className="text-gray-700 italic font-medium">
-                "Your health shouldn't depend on your wealth — and with us, it never will."
-              </p>
-            </motion.div>
-          </motion.div>
-        </motion.div>
-
-        {/* Mission Section */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="mt-24 bg-white rounded-xl shadow-lg overflow-hidden"
-        >
-          <div className="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gray-200">
-            <div className="p-8 text-center">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Our Vision</h3>
-              <p className="text-gray-600">A world where quality healthcare is accessible to all, regardless of economic status.</p>
-            </div>
-
-            <div className="p-8 text-center">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Our Mission</h3>
-              <p className="text-gray-600">To deliver affordable, compassionate, and excellent healthcare services to every community.</p>
-            </div>
-
-            <div className="p-8 text-center">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Our Promise</h3>
-              <p className="text-gray-600">To treat every patient with dignity, respect, and the highest standard of care.</p>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Stats Section */}
-
- <motion.div 
-      initial={{ opacity: 0 }}
-      whileInView={{ 
-        opacity: 1,
-        onViewportEnter: () => setIsInView(true) // Trigger when in view
-      }}
-      transition={{ duration: 0.8 }}
-      viewport={{ once: true }}
-      className="mt-24 bg-blue-600 rounded-xl shadow-lg overflow-hidden text-white"
-    >
-      <div className="grid md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-blue-500">
-        {stats.map((item, index) => (
+      <div className="bg-gradient-to-b from-blue-50 mt-20 to-white py-12 md:py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          {/* Hero Section */}
           <motion.div 
-            key={index} 
-            className="text-center p-6 lg:pt-10 lg:pb-10"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300 }}
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="mb-16 text-center"
           >
-            <span className="text-3xl lg:text-4xl font-bold mb-3 block">
-              {index === 3 ? (
-                "24/7"
-              ) : (
-                <CountUp
-                  end={item.num}
-                  duration={4}
-                  decimals={item.num % 1 !== 0 ? 1 : 0}
-                  suffix="+"
-                  startOnMount={false}
-                  delay={0}
-                  redraw={false}
-                  enableScrollSpy
-                  scrollSpyOnce
-                />
-              )}
-            </span>
-            <p className="text-blue-100 text-lg lg:text-xl font-semibold">
-              {item.text}
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-blue-100 rounded-full mb-6">
+              <span className="text-2xl">🏥</span>
+            </div>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 leading-tight">
+              About <span className="text-blue-600 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Lifeline</span>
+            </h1>
+            <div className="w-32 h-1.5 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-6 rounded-full"></div>
+            <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-light">
+              Bringing <span className="font-semibold text-blue-500">Affordable</span>, <span className="font-semibold text-purple-500">World-Class Healthcare</span> to Every Doorstep
             </p>
           </motion.div>
-        ))}
-      </div>
-    </motion.div>
 
-        {/* Final CTA */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="mt-24 text-center"
-        >
-          <h3 className="text-2xl font-bold text-gray-900 mb-6">Ready to experience compassionate healthcare?</h3>
-       <Link to="/alldoctors/cardiology">
-  <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-lg shadow-md transition duration-300 transform hover:scale-105">
-    Book an Appointment
-  </button>
-</Link>
+          {/* Content Section */}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center mb-20"
+          >
+            {/* Image Section */}
+            <motion.div 
+              variants={itemVariants}
+              className="relative group"
+            >
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl transform group-hover:scale-[1.02] transition-transform duration-500">
+                <div className="aspect-[4/3] bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center">
+                  <div className="text-white text-center p-8">
+                    <div className="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6 backdrop-blur-sm">
+                      <span className="text-4xl">❤️</span>
+                    </div>
+                    <h3 className="text-2xl font-bold mb-2">Compassionate Care</h3>
+                    <p className="text-blue-100">Your health is our priority</p>
+                  </div>
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </div>
+              
+              {/* Floating elements */}
+              <div className="absolute -top-4 -left-4 w-8 h-8 bg-yellow-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200"></div>
+              <div className="absolute -bottom-4 -right-4 w-6 h-6 bg-green-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-300"></div>
+            </motion.div>
 
-        </motion.div>
+            {/* Text Content */}
+            <motion.div variants={containerVariants} className="space-y-6 lg:space-y-8">
+              <motion.div 
+                variants={itemVariants}
+                className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-blue-100"
+              >
+                <p className="text-gray-700 leading-relaxed text-lg md:text-xl">
+                  At <span className="font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded-lg">Lifeline Health Care</span>, we believe healthcare should be accessible, affordable, and of the highest quality — no matter your background or income.
+                </p>
+              </motion.div>
+
+              <motion.div 
+                variants={itemVariants}
+                className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-purple-100"
+              >
+                <p className="text-gray-700 leading-relaxed text-lg md:text-xl">
+                  From rural villages to bustling cities, our mission is to serve people of all walks of life by offering top-tier medical services at a fraction of the typical cost.
+                </p>
+              </motion.div>
+
+              <motion.div 
+                variants={itemVariants}
+                className="bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl p-6 shadow-xl transform hover:scale-[1.02] transition-transform duration-300"
+              >
+                <p className="text-white text-lg md:text-xl font-semibold italic text-center">
+                  "Your health shouldn't depend on your wealth — and with us, it never will."
+                </p>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+
+          {/* Mission Section */}
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="mb-20"
+          >
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              {[
+                {
+                  icon: "🌍",
+                  title: "Our Vision",
+                  description: "A world where quality healthcare is accessible to all, regardless of economic status.",
+                  color: "from-blue-500 to-blue-600"
+                },
+                {
+                  icon: "🎯",
+                  title: "Our Mission",
+                  description: "To deliver affordable, compassionate, and excellent healthcare services to every community.",
+                  color: "from-purple-500 to-purple-600"
+                },
+                {
+                  icon: "🤝",
+                  title: "Our Promise",
+                  description: "To treat every patient with dignity, respect, and the highest standard of care.",
+                  color: "from-green-500 to-green-600"
+                }
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  whileHover={{ 
+                    y: -8,
+                    scale: 1.02,
+                    transition: { type: "spring", stiffness: 300 }
+                  }}
+                  className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-300 group"
+                >
+                  <div className={`w-16 h-16 bg-gradient-to-r ${item.color} rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                    <span className="text-2xl">{item.icon}</span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">{item.title}</h3>
+                  <p className="text-gray-600 text-center leading-relaxed">{item.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Stats Section */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ 
+              opacity: 1,
+              onViewportEnter: () => setIsInView(true)
+            }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true, margin: "-50px" }}
+            className="mb-20"
+          >
+            <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 rounded-3xl shadow-2xl overflow-hidden relative">
+              {/* Background pattern */}
+              <div className="absolute inset-0 opacity-10">
+                <div className="absolute inset-0" style={{
+                  backgroundImage: `radial-gradient(circle at 25px 25px, white 2%, transparent 2.5%)`,
+                  backgroundSize: '50px 50px'
+                }}></div>
+              </div>
+              
+              <div className="relative grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-white/20">
+                {stats.map((item, index) => (
+                  <motion.div 
+                    key={index} 
+                    className="text-center p-6 lg:p-8 group"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-white/30 transition-colors duration-300 backdrop-blur-sm">
+                      <span className="text-2xl">{item.icon}</span>
+                    </div>
+                    <div className="text-3xl lg:text-4xl font-bold text-white mb-2">
+                      {index === 3 ? (
+                        <motion.span
+                          initial={{ scale: 0 }}
+                          whileInView={{ scale: 1 }}
+                          transition={{ type: "spring", stiffness: 200 }}
+                        >
+                          24/7
+                        </motion.span>
+                      ) : (
+                        <CountUp
+                          end={item.num}
+                          duration={3}
+                          decimals={item.num % 1 !== 0 ? 1 : 0}
+                          suffix="+"
+                          enableScrollSpy
+                          scrollSpyOnce
+                          className="block"
+                        />
+                      )}
+                    </div>
+                    <p className="text-blue-100 text-lg font-medium">
+                      {item.text}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* CTA Section */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <div className="bg-white rounded-3xl p-8 md:p-12 shadow-2xl border border-gray-100 max-w-4xl mx-auto">
+              <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+                Ready to Experience Compassionate Healthcare?
+              </h3>
+              <p className="text-gray-600 text-lg md:text-xl mb-8 max-w-2xl mx-auto">
+                Join thousands of satisfied patients who trust Lifeline for their healthcare needs.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link to="/alldoctors/cardiology">
+                  <motion.button 
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-4 px-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform flex items-center gap-2"
+                  >
+                    <span>Book an Appointment</span>
+                    <span>→</span>
+                  </motion.button>
+                </Link>
+                <motion.button 
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="border-2 border-blue-600 text-blue-600 hover:bg-blue-50 font-semibold py-4 px-8 rounded-2xl transition-all duration-300 transform"
+                >
+                  Learn More
+                </motion.button>
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </div>
-    </div>
-    
   );
 };
 
